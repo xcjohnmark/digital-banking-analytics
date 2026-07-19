@@ -1,8 +1,9 @@
 import psycopg2
+import os
 
 DATABASE = "digital_banking_analytics"
 USER = "postgres"
-PASSWORD = "os.getenv('DB_PASSWORD')"
+PASSWORD = os.getenv('DB_PASSWORD')
 HOST = "127.0.0.1"
 PORT = 5432
 
