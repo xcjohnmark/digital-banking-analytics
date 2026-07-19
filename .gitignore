@@ -11,3 +11,9 @@ __pycache__/
 # Database connection password files (optional, for safety)
 *.env
 
+# Exclude raw database CSV files
+data/*.csv
+
+# Exclude local project documentation
+project/roadmap.md
+project/project-details.md
