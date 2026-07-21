@@ -17,3 +17,5 @@ data/*.csv
 # Exclude local project documentation
 project/roadmap.md
 project/project-details.md
+
+/docs
