@@ -26,7 +26,7 @@ This project analyzes user behavior on a digital banking application, tracking u
 #### Question 1 & 2: Funnel & Activation
 The overall conversion rate across the 7 onboarding stages is **51.16%** (2,558 out of 5,000 users completed account creation).
 
-**SQL Query:**
+**SQL Query (View source in [onboarding_funnel.sql](https://github.com/xcjohnmark/digital-banking-analytics/blob/main/sql/onboarding_funnel.sql#L9-L17)):**
 ```sql
 SELECT
 	COUNT(DISTINCT CASE WHEN event_name = 'App Opened' THEN user_id END) AS open_stage,
@@ -56,7 +56,7 @@ We observed significant user drop-off at two critical friction points in the onb
 #### Question 3 & 4: User Engagement & Stickiness
 The app's active user metrics indicate an average of **128.9 Daily Active Users (DAU)**, **656.4 Weekly Active Users (WAU)**, and **1,023.8 Monthly Active Users (MAU)**. The overall **App Stickiness Ratio (DAU / MAU) is 12.59%**.
 
-**SQL Query (WAU calculation):**
+**SQL Query (View WAU calculation in [user_engagement.sql](https://github.com/xcjohnmark/digital-banking-analytics/blob/main/sql/user_engagement.sql#L11-L20)):**
 ```sql
 WITH weekly_active AS (
 	SELECT
@@ -70,7 +70,7 @@ SELECT
 FROM weekly_active;
 ```
 
-**SQL Query (DAU, MAU, and Stickiness Ratio calculation):**
+**SQL Query (View DAU, MAU, and Stickiness calculations in [user_engagement.sql](https://github.com/xcjohnmark/digital-banking-analytics/blob/main/sql/user_engagement.sql#L37-L57)):**
 ```sql
 WITH
     daily_active AS (
@@ -104,7 +104,7 @@ SELECT
 #### Question 5 & 6: Transaction Performance & Revenue
 Our financial metrics show a total fee revenue of **485,254.26**, with **over 91%** of it coming from transfers. `Transfer` transactions have a significantly higher ticket size (average **25,104.22**) compared to other channels (averaging around **2,500**).
 
-**SQL Query (Volume and average transaction size by type):**
+**SQL Query (View volume & average size in [transactions_analysis.sql](https://github.com/xcjohnmark/digital-banking-analytics/blob/main/sql/transactions_analysis.sql#L1-L8)):**
 ```sql
 SELECT
 	type,
@@ -116,7 +116,7 @@ GROUP BY type
 ORDER BY total_volume DESC;
 ```
 
-**SQL Query (Transaction success rate by type):**
+**SQL Query (View success rates in [transactions_analysis.sql](https://github.com/xcjohnmark/digital-banking-analytics/blob/main/sql/transactions_analysis.sql#L11-L17)):**
 ```sql
 SELECT 
 	type, COUNT(*) AS total_transactions,
@@ -127,7 +127,7 @@ GROUP BY type
 ORDER BY success_rate ASC;
 ```
 
-**SQL Query (Fee revenue by type & grand total):**
+**SQL Query (View fee & grand total calculations in [transactions_analysis.sql](https://github.com/xcjohnmark/digital-banking-analytics/blob/main/sql/transactions_analysis.sql#L20-L27)):**
 ```sql
 -- Fee revenue by category
 SELECT type, SUM(fee) AS total_revenue
@@ -149,7 +149,7 @@ FROM transactions;
 #### Question 7: Cohort Retention Analysis
 We tracked returning active users over a 6-month period to analyze user retention decay.
 
-**SQL Query:**
+**SQL Query (View source in [cohort_retention.sql](https://github.com/xcjohnmark/digital-banking-analytics/blob/main/sql/cohort_retention.sql#L1-L39)):**
 ```sql
 WITH user_activity AS (
 	SELECT
@@ -205,7 +205,7 @@ ORDER BY a.cohort_month, a.month_number;
 
 ### Outlier & Behavioral Deep Dive (Python Jupyter Notebook)
 
-We used Python (Pandas) to run advanced statistical reviews on transaction amounts and calculate behavioral correlations.
+We used Python (Pandas) inside our [Jupyter Notebook](https://github.com/xcjohnmark/digital-banking-analytics/blob/main/notebooks/product_analytics.ipynb) to run advanced statistical reviews on transaction amounts and calculate behavioral correlations.
 
 #### 1. Transaction Outliers (IQR Method)
 Using the Interquartile Range (IQR) method on the global dataset, any transaction above **8,785.88** was flagged as an outlier, resulting in **14.14%** of the database being labeled as "anomalies." 
