@@ -18,5 +18,6 @@ data/*.csv
 project/roadmap.md
 project/project-details.md
 
-/docs
+docs/
 images/
+.agents/
