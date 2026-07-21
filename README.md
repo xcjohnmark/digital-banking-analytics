@@ -217,3 +217,14 @@ However, segmenting the analysis by transaction type revealed **zero outliers** 
 We calculated the Pearson correlation coefficient ($r$) between the time it took a user to complete onboarding (onboarding duration) and their subsequent transaction count:
 *   **Result:** $r = -0.0237$
 *   **The Finding:** A correlation coefficient of -0.0237 represents **zero correlation**. While onboarding friction (BVN/KYC delays) causes users to drop off *during* setup, it has no impact on their transaction habits *once they successfully activate*. Product managers should focus onboarding optimization purely on funnel completion (getting users set up), knowing that historical signup delays will not suppress active transaction habits.
+
+---
+
+### Conclusion & Key Competencies Demonstrated
+
+This case study successfully simulates the workflow of a Product Data Analyst in a modern digital banking environment. By analyzing onboarding, engagement, transaction health, and cohort retention, the project demonstrates how technical data processes directly drive strategic product decisions.
+
+#### Key Competencies Demonstrated:
+*   **Database Engineering & SQL:** Schema creation (DDL), referential integrity constraints, conditional aggregations, window functions, and complex CTEs for funnel and cohort tracking.
+*   **Statistical Analysis & Python:** Exploratory data analysis (EDA), data cleaning, statistical anomaly detection using the Interquartile Range (IQR) method, and correlation analysis (Pearson's r) to test product behavior hypotheses.
+*   **Analytics Translation:** Connecting cold, technical query results to actionable product insights, highlighting revenue vulnerabilities (over-dependency on transfer fees), and onboarding optimization areas.
